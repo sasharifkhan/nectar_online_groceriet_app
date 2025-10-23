@@ -25,7 +25,6 @@ class _SelectlocationState extends State<Selectlocation> {
             SizedBox(height: 15,),
             Text("Switch on your location to stay in tune with what’s happening in your area",style: TextStyle(fontSize: 16),textAlign: TextAlign.center,),
           ],),
-
           Rectangleroundedbutton(buttonName: 'Submit', buttonbgcolor: Color(0xFF53B175), callback: (){})
         ],),
       ),),),
