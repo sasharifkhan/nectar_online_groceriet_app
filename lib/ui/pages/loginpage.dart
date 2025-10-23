@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
+import 'package:nectar_online_groceriet_app/ui/pages/singuppage.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
 
@@ -35,14 +37,18 @@ class _LoginpageState extends State<Loginpage> {
             Align(alignment: AlignmentGeometry.centerRight, child: RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14),recognizer: TapGestureRecognizer()..onTap = (){}),)),
           ],),
           Column(children: [
-            Rectangleroundedbutton(buttonName: "Log IN",callback: () {},buttonbgcolor: Color(0xFF53B175),),
+            Rectangleroundedbutton(buttonName: "Log IN",callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
+            },buttonbgcolor: Color(0xFF53B175),),
             SizedBox(height: 20,),
             Rectangleroundedbutton(buttonicon: Image(image: AssetImage("lib/assets/icons/google_icon.png"),height: 24,width: 24,), buttonName: "Continue with Google",callback: () {},buttonbgcolor: Color(0xFF5383EC),),
           ],),
           Center(
             child: RichText(text: TextSpan(children: [
               TextSpan(text: "Don’t have an account? ",style: TextStyle(fontSize: 14)),
-              TextSpan(text: "Singup", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){})
+              TextSpan(text: "SignUp", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Singuppage(),));
+              })
             ])),
           )
         ],),
