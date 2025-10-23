@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/splashscreen.dart';
 
 void main() {
-  runApp(DevicePreview(builder: (context) => MyApp(),));
+  runApp( MyApp());
+  // runApp(DevicePreview(builder: (context) => MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

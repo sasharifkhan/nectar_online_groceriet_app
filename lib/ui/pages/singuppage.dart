@@ -1,11 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/loginpage.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
 
-class Singuppage extends StatelessWidget {
+class Singuppage extends StatefulWidget {
   const Singuppage({super.key});
+
+  @override
+  State<Singuppage> createState() => _SinguppageState();
+}
+
+class _SinguppageState extends State<Singuppage> {
+  var signupUsername = TextEditingController();
+  var signupEmail  = TextEditingController();
+  var signupPassword = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +32,15 @@ class Singuppage extends StatelessWidget {
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text("Username",style: TextStyle(fontSize: 16),),
-              Plainedtextfield(textboxHintText: "S Khan"),
+              Plainedtextfield(controller: signupUsername, textboxHintText: "S Khan"),
             ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Email",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(textboxHintText: "email@example.com"),
+            Plainedtextfield(controller: signupEmail, textboxHintText: "email@example.com"),
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
+            Plainedtextfield(controller: signupPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
           ],),
           RichText(text: TextSpan(children: [
             TextSpan(text: "By continuing you agree to our "),
@@ -37,10 +48,13 @@ class Singuppage extends StatelessWidget {
             TextSpan(text: " and "),
             TextSpan(text: "Privacy Policy.",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){})
             ])),
-          Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: (){}),
+          Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
+            var registercheck = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
+            print(registercheck);
+          }),
           Center(
             child: RichText(text: TextSpan(children: [
-              TextSpan(text: "Already have an account? ",style: TextStyle(fontSize: 14)),
+              TextSpan(text: "Already have an account? ",style: TextStyle(fontSize: 14,color: Colors.black)),
               TextSpan(text: "Login", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage(),));
               })

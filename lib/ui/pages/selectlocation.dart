@@ -19,7 +19,7 @@ class _SelectlocationState extends State<Selectlocation> {
         padding: const EdgeInsets.only(left: 20,right: 20,top: 80,bottom: 50),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,),
+            InkWell(onTap: () {}, child: Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,)),
             SizedBox(height: 40,),
             Text("Select Your Location",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
             SizedBox(height: 15,),
