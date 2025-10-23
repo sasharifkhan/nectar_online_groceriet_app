@@ -19,9 +19,7 @@ class LoginCheck{
     print(response.statusCode);
     if(response.statusCode == 200){
       print("Okay");
-
       return true;
-      // return jsonDecode(response.body);
     }
     return false;
     } catch (e){
@@ -43,13 +41,13 @@ class RegisterNew{
         "email": email, 
         "password": password 
        });
-    if (response.statusCode == 200){
+    if (response.statusCode == 201){
+      print("Create Success");
       return jsonDecode(response.body);
-    } return null;
+    } print(response.statusCode); return null;
     } catch (e){
       print(e);
       return null;
     }
-
   }
 }
