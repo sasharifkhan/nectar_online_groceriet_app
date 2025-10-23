@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/loginpage.dart';
+import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
 
@@ -52,7 +53,13 @@ class _SinguppageState extends State<Singuppage> {
             ])),
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
             var registercheck = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
-            print(registercheck);
+            if (registercheck == true){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
+            } else{
+              return showDialog(context: context, builder: (context) {
+                return AlertDialog(title: Text("Register Error"),);
+              },);
+            }
           }),
           Center(
             child: RichText(text: TextSpan(children: [

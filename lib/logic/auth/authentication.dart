@@ -32,7 +32,7 @@ class LoginCheck{
 }
 
 class RegisterNew{
-  Future <Map<String,dynamic>?>  Register(String username,String email, String password) async {
+  Future<bool?>  Register(String username,String email, String password) async {
     const String baseurl = 'https://foodsflow.netlify.app';
     const String registerpath = '/api/auth/register';
     try {
@@ -43,11 +43,12 @@ class RegisterNew{
        });
     if (response.statusCode == 201){
       print("Create Success");
-      return jsonDecode(response.body);
-    } print(response.statusCode); return null;
+      // return jsonDecode(response.body);
+      return true;
+    } print(response.statusCode); return false;
     } catch (e){
       print(e);
-      return null;
+      return false;
     }
   }
 }
