@@ -11,6 +11,7 @@ class Plainedtextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(decoration: InputDecoration(hintText: textboxHintText, ),);
+    return textboxIcon != null ? TextField(decoration: InputDecoration(hintText: textboxHintText,suffixIcon: IconButton(onPressed: (){}, icon: textboxIcon!)),):  
+    TextField(decoration: InputDecoration(hintText: textboxHintText),) ;
   }
 }
