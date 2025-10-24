@@ -42,10 +42,10 @@ class _LoginpageState extends State<Loginpage> {
             Plainedtextfield(obs: true, controller: InputPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
             SizedBox(height: 10,),
             LoginErrorStatus  == false ?Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14),recognizer: TapGestureRecognizer()..onTap = (){}),),
+              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){}),),
             ],): Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text("Login Failed! Try again.",style: TextStyle(color: Colors.red,fontSize: 14),),
-              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14),recognizer: TapGestureRecognizer()..onTap = (){}),),
+              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){}),),
             ],),
           ],),
           Column(children: [
