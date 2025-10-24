@@ -63,8 +63,8 @@ class _SinguppageState extends State<Singuppage> {
           
 
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
-            var registercheck = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
-            if (registercheck == true){
+            var isRegister = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
+            if (isRegister == true){
               setState(() {
                 usernameAlreadyExist = false;
               });

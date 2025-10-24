@@ -21,12 +21,10 @@ class _LoginpageState extends State<Loginpage> {
   var InputEmail = TextEditingController();
   var InputPassword = TextEditingController();
   bool LoginErrorStatus = false;
-  // bool get passwordshowdetais => Provider.of<Providerdata>(context).passwordshowdetais;
   
 
   @override
   Widget build(BuildContext context) {
-    // print(passwordshowdetais);
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/assets/images/login_page_bg.png'),fit: BoxFit.cover)),child: 
@@ -60,8 +58,8 @@ class _LoginpageState extends State<Loginpage> {
           ],),
           Column(children: [
             Rectangleroundedbutton(buttonName: "Log IN",callback: () async {
-              var LoginData = await LoginCheck().Login(InputEmail.text,InputPassword.text);
-              if(LoginData == true){
+              var isLogin = await LoginCheck().Login(InputEmail.text,InputPassword.text);
+              if(isLogin == true){
                 setState(() {
                   LoginErrorStatus = false;
                 });
