@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -9,6 +10,7 @@ class LoginCheck{
    Future<bool?> Login(String username, String password) async {
     print(username,);
     print(password);
+    final token = GetStorage();
     const String baseurl = 'https://foodsflow.netlify.app';
     const String loginpath = '/api/auth/login';
     try{
@@ -19,6 +21,10 @@ class LoginCheck{
     print(response.statusCode);
     if(response.statusCode == 200){
       print("Okay");
+      var data = jsonDecode(response.body);
+      String tokendata =  data['data']['token'];
+      token.write('token',tokendata);
+      print(token.read('token'));
       return true;
     }
     return false;

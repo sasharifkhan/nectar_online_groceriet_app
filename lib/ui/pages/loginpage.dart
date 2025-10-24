@@ -18,6 +18,7 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   var InputEmail = TextEditingController();
   var InputPassword = TextEditingController();
+  bool LoginErrorStatus = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +39,28 @@ class _LoginpageState extends State<Loginpage> {
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(controller: InputPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
+            Plainedtextfield(obs: true, controller: InputPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
             SizedBox(height: 10,),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            LoginErrorStatus  == false ?Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14),recognizer: TapGestureRecognizer()..onTap = (){}),),
-            ],)
+            ],): Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text("Login Failed! Try again.",style: TextStyle(color: Colors.red,fontSize: 14),),
+              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14),recognizer: TapGestureRecognizer()..onTap = (){}),),
+            ],),
           ],),
           Column(children: [
             Rectangleroundedbutton(buttonName: "Log IN",callback: () async {
               var LoginData = await LoginCheck().Login(InputEmail.text,InputPassword.text);
               if(LoginData == true){
+                setState(() {
+                  LoginErrorStatus = false;
+                });
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
               } else{
-                showDialog(context: context, builder: (context) {
-                  return AlertDialog(title: Text("Login Error"),);
-                },);
+                setState(() {
+                  LoginErrorStatus = true;
+                });
               }
-              
             },buttonbgcolor: Color(0xFF53B175),),
             SizedBox(height: 20,),
             Rectangleroundedbutton(buttonicon: Image(image: AssetImage("lib/assets/icons/google_icon.png"),height: 24,width: 24,), buttonName: "Continue with Google",callback: () {},buttonbgcolor: Color(0xFF5383EC),),

@@ -1,10 +1,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/splashscreen.dart';
 
-void main() {
-  // runApp( MyApp());
-  runApp(DevicePreview(builder: (context) => MyApp(),));
+Future<void> main() async {
+  await GetStorage.init();
+  runApp( MyApp());
+  // runApp(DevicePreview(builder: (context) => MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

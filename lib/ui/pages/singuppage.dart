@@ -19,6 +19,7 @@ class _SinguppageState extends State<Singuppage> {
   var signupUsername = TextEditingController();
   var signupEmail  = TextEditingController();
   var signupPassword = TextEditingController();
+  bool usernameAlreadyExist = false;
 
 
   @override
@@ -35,7 +36,7 @@ class _SinguppageState extends State<Singuppage> {
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text("Username",style: TextStyle(fontSize: 16),),
-              Plainedtextfield(controller: signupUsername, textboxHintText: "S Khan"),
+              Plainedtextfield(controller: signupUsername, textboxHintText: "Enter your name."),
             ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Email",style: TextStyle(fontSize: 16),),
@@ -43,22 +44,26 @@ class _SinguppageState extends State<Singuppage> {
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(controller: signupPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
+            Plainedtextfield(obs: true, controller: signupPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
           ],),
+          usernameAlreadyExist == true? Text("This email is already Exist",style: TextStyle(color: Colors.red, fontSize: 14),):Text('',style: TextStyle(fontSize: 14),),
           RichText(text: TextSpan(children: [
-            TextSpan(text: "By continuing you agree to our "),
+            TextSpan(text: "By continuing you agree to our ", style: TextStyle(color: Colors.black)),
             TextSpan(text: "Terms of Service",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){}),
-            TextSpan(text: " and "),
+            TextSpan(text: " and ", style: TextStyle(color: Colors.black)),
             TextSpan(text: "Privacy Policy.",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){})
             ])),
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
             var registercheck = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
             if (registercheck == true){
+              setState(() {
+                usernameAlreadyExist = false;
+              });
               Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
             } else{
-              return showDialog(context: context, builder: (context) {
-                return AlertDialog(title: Text("Register Error"),);
-              },);
+              setState(() {
+                usernameAlreadyExist = true;
+              });
             }
           }),
           Center(
@@ -69,7 +74,6 @@ class _SinguppageState extends State<Singuppage> {
               })
             ])),
           )
-          
         ],),
       ),),),
     );
