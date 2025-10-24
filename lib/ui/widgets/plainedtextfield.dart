@@ -6,15 +6,16 @@ class Plainedtextfield extends StatelessWidget {
   final Icon? textboxIcon;
   final TextEditingController?controller;
   final bool? obs;
+  final VoidCallback?callback;
 
 
-  const Plainedtextfield({super.key, required this.textboxHintText, this.textboxIcon, this.controller, this.obs});
+  const Plainedtextfield({super.key, required this.textboxHintText, this.textboxIcon, this.controller, this.obs, this.callback});
   
 
 
   @override
   Widget build(BuildContext context) {
-    return textboxIcon != null ? TextField(controller: controller, decoration: InputDecoration(hintText: textboxHintText,suffixIcon: IconButton(onPressed: (){}, icon: textboxIcon!)),obscureText: obs!,):  
+    return textboxIcon != null ? TextField(controller: controller, decoration: InputDecoration(hintText: textboxHintText,suffixIcon: IconButton(onPressed: callback, icon: textboxIcon!)),obscureText: obs!,):  
     TextField(controller: controller, decoration: InputDecoration(hintText: textboxHintText,),) ;
   }
 }

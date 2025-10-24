@@ -3,10 +3,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
+import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/singuppage.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
+import 'package:provider/provider.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -19,9 +21,12 @@ class _LoginpageState extends State<Loginpage> {
   var InputEmail = TextEditingController();
   var InputPassword = TextEditingController();
   bool LoginErrorStatus = false;
+  // bool get passwordshowdetais => Provider.of<Providerdata>(context).passwordshowdetais;
+  
 
   @override
   Widget build(BuildContext context) {
+    // print(passwordshowdetais);
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/assets/images/login_page_bg.png'),fit: BoxFit.cover)),child: 
@@ -39,7 +44,12 @@ class _LoginpageState extends State<Loginpage> {
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(obs: true, controller: InputPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
+            Consumer<Providerdata>(builder: (ctx, provider, child) {
+              bool passwordshowdetais = provider.passwordshowdetais;
+              return Plainedtextfield(callback: () {
+              provider.tooglePasswordShowHide();
+            }, obs: passwordshowdetais, controller: InputPassword, textboxHintText: "*********",textboxIcon: passwordshowdetais == true? Icon(Icons.visibility_off):Icon(Icons.visibility),);
+            },),
             SizedBox(height: 10,),
             LoginErrorStatus  == false ?Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){}),),

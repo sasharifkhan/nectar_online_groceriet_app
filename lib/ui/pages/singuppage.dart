@@ -3,10 +3,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
+import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/loginpage.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
+import 'package:provider/provider.dart';
 
 class Singuppage extends StatefulWidget {
   const Singuppage({super.key});
@@ -44,15 +46,22 @@ class _SinguppageState extends State<Singuppage> {
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(obs: true, controller: signupPassword, textboxHintText: "*********",textboxIcon: Icon(Icons.visibility_off),),
+            Consumer<Providerdata>(builder: (ctx, provider, child) {
+              bool passwordshowdetais = provider.passwordshowdetais;
+              return Plainedtextfield(callback: () {
+                provider.tooglePasswordShowHide();
+              }, obs: passwordshowdetais, controller: signupPassword, textboxHintText: "*********",textboxIcon: passwordshowdetais==false?Icon(Icons.visibility):Icon(Icons.visibility_off),);
+            },),
+            usernameAlreadyExist == true? Text("This email is already exists!",style: TextStyle(color: Colors.red, fontSize: 14),):Text('',style: TextStyle(fontSize: 14),),
+            RichText(text: TextSpan(children: [
+              TextSpan(text: "By continuing you agree to our ", style: TextStyle(color: Colors.black)),
+              TextSpan(text: "Terms of Service",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){}),
+              TextSpan(text: " and ", style: TextStyle(color: Colors.black)),
+              TextSpan(text: "Privacy Policy.",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){})
+              ])),
           ],),
-          usernameAlreadyExist == true? Text("This email is already Exist",style: TextStyle(color: Colors.red, fontSize: 14),):Text('',style: TextStyle(fontSize: 14),),
-          RichText(text: TextSpan(children: [
-            TextSpan(text: "By continuing you agree to our ", style: TextStyle(color: Colors.black)),
-            TextSpan(text: "Terms of Service",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){}),
-            TextSpan(text: " and ", style: TextStyle(color: Colors.black)),
-            TextSpan(text: "Privacy Policy.",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){})
-            ])),
+          
+
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
             var registercheck = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
             if (registercheck == true){
