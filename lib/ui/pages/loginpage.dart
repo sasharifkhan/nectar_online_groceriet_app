@@ -21,7 +21,7 @@ class _LoginpageState extends State<Loginpage> {
   var InputEmail = TextEditingController();
   var InputPassword = TextEditingController();
   bool LoginErrorStatus = false;
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +58,9 @@ class _LoginpageState extends State<Loginpage> {
           ],),
           Column(children: [
             Rectangleroundedbutton(buttonName: "Log IN",callback: () async {
-              var isLogin = await LoginCheck().Login(InputEmail.text,InputPassword.text);
-              if(isLogin == true){
-                setState(() {
-                  LoginErrorStatus = false;
-                });
+              final token = await LoginCheck().Login(InputEmail.text,InputPassword.text);
+              if(token != null && mounted){
+                context.read<Providerdata>().logedIn(token);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
               } else{
                 setState(() {
