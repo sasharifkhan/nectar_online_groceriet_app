@@ -37,7 +37,8 @@ class LoginCheck{
 }
 
 class RegisterNew{
-  Future<bool?>  Register(String username,String email, String password) async {
+  Future<String?>  Register(String username,String email, String password) async {
+    final token = GetStorage();
     const String baseurl = 'https://foodsflow.netlify.app';
     const String registerpath = '/api/auth/register';
     try {
@@ -48,15 +49,16 @@ class RegisterNew{
         });
 
       if (response.statusCode == 201){
-        print("Create Success");
-        // return jsonDecode(response.body);
-        return true;
+        var data = jsonDecode(response.body);
+        String tokendata = data['data']['token'];
+        token.write('token', tokendata);
+        return tokendata;
 
-      } print(response.statusCode); return false;
+      } print(response.statusCode); return null;
       
     } catch (e){
       print(e);
-      return false;
+      return null;
     }
   }
 }

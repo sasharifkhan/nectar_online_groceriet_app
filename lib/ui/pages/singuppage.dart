@@ -63,11 +63,9 @@ class _SinguppageState extends State<Singuppage> {
           
 
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
-            var isRegister = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
-            if (isRegister == true){
-              setState(() {
-                usernameAlreadyExist = false;
-              });
+            var token = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
+            if (token != null){
+              context.read<Providerdata>().logedIn(token);
               Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
             } else{
               setState(() {
