@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,routes: {
-        'login' : (_)=> Splashscreen(),
+        'login' : (_)=> Selectlocation(),
         'alreadyloggedin': (_)=> Selectlocation()
       },
       title: 'nectar',

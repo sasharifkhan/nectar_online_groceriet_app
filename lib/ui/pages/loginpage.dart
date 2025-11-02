@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
+import 'package:nectar_online_groceriet_app/ui/pages/forgetpassword.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/singuppage.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
@@ -50,10 +51,14 @@ class _LoginpageState extends State<Loginpage> {
             },),
             SizedBox(height: 10,),
             LoginErrorStatus  == false ?Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){}),),
+              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetpassword(),));
+              }),),
             ],): Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text("Login Failed! Try again.",style: TextStyle(color: Colors.red,fontSize: 14),),
-              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){}),),
+              RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetpassword(),));
+              }),),
             ],),
           ],),
           Column(children: [

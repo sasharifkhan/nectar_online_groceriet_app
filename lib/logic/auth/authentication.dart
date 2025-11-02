@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,8 +11,8 @@ class LoginCheck{
    Future<String?> Login(String username, String password) async {
 
     final token = GetStorage();
-    const String baseurl = 'https://foodsflow.netlify.app';
-    const String loginpath = '/api/auth/login';
+    const String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    const String loginpath = '/base/api/auth/login';
 
     try{
     var response =  await http.post(Uri.parse('$baseurl$loginpath'),body: {
@@ -37,15 +38,17 @@ class LoginCheck{
 }
 
 class RegisterNew{
-  Future<String?>  Register(String username,String email, String password) async {
+  Future<String?>  Register(String firstname, String lastname, String username,String email, String password) async {
     final token = GetStorage();
-    const String baseurl = 'https://foodsflow.netlify.app';
-    const String registerpath = '/api/auth/register';
+    const String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    const String registerpath = '/base/api/auth/register';
     try {
       var response = await http.post(Uri.parse('$baseurl$registerpath'),body: {
-          "name": username,
-          "email": email, 
-          "password": password 
+        "username": username,
+        "email": email,
+        "password": password,
+        "first_name": firstname,
+        "last_name": lastname
         });
 
       if (response.statusCode == 201){
@@ -62,3 +65,4 @@ class RegisterNew{
     }
   }
 }
+

@@ -14,6 +14,7 @@ class Providerdata extends ChangeNotifier {
 
   bool get isLogin => _isLogin;
   String? get token => _token;
+
   void logedIn(String token){
     _isLogin = true;
     _token = token;
@@ -21,6 +22,15 @@ class Providerdata extends ChangeNotifier {
 
   }
 
+  String? _currentlocation;
+
+  String? get currentlocation => _currentlocation;
+
+  void saveLocation(currentlocation){
+    _currentlocation = currentlocation;
+    notifyListeners();
+
+  }
 
 
 

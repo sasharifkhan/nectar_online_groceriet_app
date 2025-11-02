@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/loginpage.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
@@ -19,6 +18,8 @@ class Singuppage extends StatefulWidget {
 
 class _SinguppageState extends State<Singuppage> {
   var signupUsername = TextEditingController();
+  var signupUserfirstname = TextEditingController();
+  var signupUserlastname = TextEditingController();
   var signupEmail  = TextEditingController();
   var signupPassword = TextEditingController();
   bool usernameAlreadyExist = false;
@@ -36,15 +37,30 @@ class _SinguppageState extends State<Singuppage> {
               Text("Sign Up",style: TextStyle(fontSize: 26),),
               Text("Enter your credentials to continue",style: TextStyle(fontSize: 16),),
             ],),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text("First Name",style: TextStyle(fontSize: 16),),
+                  Plainedtextfield(controller: signupUserfirstname, textboxHintText: "Enter your first name."),
+                ],),
+              ),
+              SizedBox(width: 20,),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text("Last Name",style: TextStyle(fontSize: 16),),
+                  Plainedtextfield(controller: signupUserlastname, textboxHintText: "Enter your last name."),
+                ],),
+              )
+            ],),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text("Username",style: TextStyle(fontSize: 16),),
-              Plainedtextfield(controller: signupUsername, textboxHintText: "Enter your name."),
+              Plainedtextfield(controller: signupUsername, textboxHintText: "Enter your username."),
             ],),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Email",style: TextStyle(fontSize: 16),),
             Plainedtextfield(controller: signupEmail, textboxHintText: "email@example.com"),
-          ],),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            ],),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
             Consumer<Providerdata>(builder: (ctx, provider, child) {
               bool passwordshowdetais = provider.passwordshowdetais;
@@ -63,7 +79,7 @@ class _SinguppageState extends State<Singuppage> {
           
 
           Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
-            var token = await RegisterNew().Register(signupUsername.text,signupEmail.text,signupPassword.text);
+            var token = await RegisterNew().Register(signupUserfirstname.text,signupUserlastname.text,signupUsername.text,signupEmail.text,signupPassword.text);
             if (token != null){
               context.read<Providerdata>().logedIn(token);
               Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
@@ -77,7 +93,7 @@ class _SinguppageState extends State<Singuppage> {
             child: RichText(text: TextSpan(children: [
               TextSpan(text: "Already have an account? ",style: TextStyle(fontSize: 14,color: Colors.black)),
               TextSpan(text: "Login", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage(),));
+                Navigator.pop(context);
               })
             ])),
           )

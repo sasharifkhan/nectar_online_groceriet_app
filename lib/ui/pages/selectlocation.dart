@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_online_groceriet_app/logic/location_services/getcurrentlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/homescreen.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
 
@@ -10,6 +11,7 @@ class Selectlocation extends StatefulWidget {
 }
 
 class _SelectlocationState extends State<Selectlocation> {
+  String? locationname;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,12 @@ class _SelectlocationState extends State<Selectlocation> {
         padding: const EdgeInsets.only(left: 20,right: 20,top: 80,bottom: 50),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            InkWell(onTap: () {}, child: Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,)),
+            InkWell(onTap: () async {
+              final location = await LocationService.getCurrentLocation();
+              print("Lat: ${location['latitude']}");
+              print("Lng: ${location['longitude']}");
+              print("Place: ${location['place']}");
+            }, child: Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,)),
             SizedBox(height: 40,),
             Text("Select Your Location",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
             SizedBox(height: 15,),
