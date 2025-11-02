@@ -12,7 +12,7 @@ class ForgetpasswordPage extends StatefulWidget {
 }
 
 class _ForgetpasswordPageState extends State<ForgetpasswordPage> {
-  var InputEmail = TextEditingController();
+  var inputEmail = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +29,12 @@ class _ForgetpasswordPageState extends State<ForgetpasswordPage> {
             Text("Enter your email to continue",style: TextStyle(fontSize: 16),),
             SizedBox(height: 30,),
             Text("Email",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(textboxHintText: "email@example.com",controller: InputEmail,),
+            Plainedtextfield(textboxHintText: "email@example.com",controller: inputEmail,),
           ],),
           Rectangleroundedbutton(buttonName: "Forget",callback: ()  async{
-            if (InputEmail.text.isEmpty){
+            if (inputEmail.text.isEmpty){
             } else {
-            int statuscode =  await ForgetPassword().Forgetpassword(InputEmail.text);
+            int statuscode =  await ForgetPassword().Forgetpassword(inputEmail.text);
             if (statuscode == 200){
               Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetlinksent(),));
             }}

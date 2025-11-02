@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:nectar_online_groceriet_app/logic/location_services/getcurrentlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/homescreen.dart';

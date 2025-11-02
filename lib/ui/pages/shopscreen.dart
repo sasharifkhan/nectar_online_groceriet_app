@@ -52,6 +52,6 @@ class Shopscreen extends StatelessWidget {
       ),)
       ],),
 
-    );;
+    );
   }
 }
