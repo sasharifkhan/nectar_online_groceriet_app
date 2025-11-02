@@ -38,7 +38,7 @@ class LocationService {
         placeName = "${place.locality ?? ''}, ${place.country ?? ''}".trim();
       }
     } catch (e) {
-      
+      placeName = "Unknown Location";
     }
 
     return {

@@ -1,8 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,7 +32,7 @@ class LoginCheck{
     }
     
   }
-  
+
 }
 
 class RegisterNew{
@@ -63,6 +61,22 @@ class RegisterNew{
       print(e);
       return null;
     }
+  }
+}
+
+class ForgetPassword{
+  Forgetpassword(String email) async{
+    final String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    final String path = '/base/api/auth/forgot-password';
+    var response = await http.post(Uri.parse('$baseurl$path'),body: 
+      {
+        "email": email
+      } 
+    );
+    return response.statusCode;
+    // if (response.statusCode == 200) {
+    //   print(response.body);
+    // }
   }
 }
 

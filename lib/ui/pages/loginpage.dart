@@ -52,12 +52,12 @@ class _LoginpageState extends State<Loginpage> {
             SizedBox(height: 10,),
             LoginErrorStatus  == false ?Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetpassword(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetpasswordPage(),));
               }),),
             ],): Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text("Login Failed! Try again.",style: TextStyle(color: Colors.red,fontSize: 14),),
               RichText(text: TextSpan(text: "Forgot Password?",style: TextStyle(fontSize: 14,color: Colors.black),recognizer: TapGestureRecognizer()..onTap = (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetpassword(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetpasswordPage(),));
               }),),
             ],),
           ],),

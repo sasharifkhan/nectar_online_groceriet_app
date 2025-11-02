@@ -41,6 +41,8 @@ dependencies:
   carousel_slider: ^5.1.1
   geolocator: ^14.0.2
   geocoding: ^4.0.0
+  url_launcher: ^6.3.2
+  google_maps_flutter: ^2.13.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,7 @@ flutter:
   assets:
     - lib/assets/images/
     - lib/assets/icons/
+    - lib/assets/productimages/
 
   #   - images/a_dot_ham.jpeg
 

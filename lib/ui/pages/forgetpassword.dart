@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/forgetlinksent.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
 import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
 
-class Forgetpassword extends StatefulWidget {
-  const Forgetpassword({super.key});
+class ForgetpasswordPage extends StatefulWidget {
+  const ForgetpasswordPage({super.key});
 
   @override
-  State<Forgetpassword> createState() => _ForgetpasswordState();
+  State<ForgetpasswordPage> createState() => _ForgetpasswordPageState();
 }
 
-class _ForgetpasswordState extends State<Forgetpassword> {
+class _ForgetpasswordPageState extends State<ForgetpasswordPage> {
   var InputEmail = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,13 @@ class _ForgetpasswordState extends State<Forgetpassword> {
             Text("Email",style: TextStyle(fontSize: 16),),
             Plainedtextfield(textboxHintText: "email@example.com",controller: InputEmail,),
           ],),
-          Rectangleroundedbutton(buttonName: "Forget",callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetlinksent(),));
+          Rectangleroundedbutton(buttonName: "Forget",callback: ()  async{
+            if (InputEmail.text.isEmpty){
+            } else {
+            int statuscode =  await ForgetPassword().Forgetpassword(InputEmail.text);
+            if (statuscode == 200){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetlinksent(),));
+            }}
             },buttonbgcolor: Color(0xFF53B175),),
         ],),
       ),),),

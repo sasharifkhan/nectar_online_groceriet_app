@@ -3,7 +3,9 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:nectar_online_groceriet_app/logic/applogic/appscreenswitch.dart';
 import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
+import 'package:nectar_online_groceriet_app/ui/pages/homescreen.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
 import 'package:nectar_online_groceriet_app/ui/pages/splashscreen.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +17,10 @@ Future<void> main() async {
 
 
 
-  runApp( ChangeNotifierProvider(create: (context) => Providerdata(),child: MyApp(initialRoute: token != null ? 'alreadyloggedin':'login'),));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => Appscreenswitch()),
+    ChangeNotifierProvider(create: (context) => Providerdata(),)
+  ],child: MyApp(initialRoute: token != null ? 'alreadyloggedin':'login'), ));
   // runApp(DevicePreview(builder: (context) => MyApp(),));
 }
 
@@ -27,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,routes: {
-        'login' : (_)=> Selectlocation(),
+        'login' : (_)=> Homescreen(),
         'alreadyloggedin': (_)=> Selectlocation()
       },
       title: 'nectar',
