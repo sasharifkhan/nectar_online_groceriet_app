@@ -15,7 +15,7 @@ class _AccountState extends State<Account> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(child: Column(children: [
+      body: Column(children: [
         Padding(
           padding: const EdgeInsets.only(left: 20, top: 40),
           child: Row( children: [
@@ -76,8 +76,8 @@ class _AccountState extends State<Account> {
           },leading: Icon(Icons.exit_to_app), title: Text("Sign Out ",style: TextStyle(fontSize: 18),),trailing: Icon(Icons.arrow_right,size: 35,),),
           ],),
         )
-
-      ],),),
+      
+      ],),
     );
   }
 }
