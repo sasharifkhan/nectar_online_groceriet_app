@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:Nectar/ui/widgets/grocerieslist.dart';
 import 'package:Nectar/ui/widgets/productitemsgridview.dart';
@@ -25,7 +26,13 @@ class Shopscreen extends StatelessWidget {
           ),
           SizedBox(height: 20,),
           const Searchbox(),
-          // CarouselSlider(items: [], options: CarouselOptions())
+          SizedBox(height: 20,),
+          SizedBox(height: 115, width: double.infinity,
+            child: CarouselSlider(items: [
+              Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)), child: Image(image: AssetImage("lib/assets/images/banner.png"),fit: BoxFit.cover,width: double.infinity,),)
+            ], options: CarouselOptions(viewportFraction: 1)),
+          ),
+          SizedBox(height: 20,),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text("Exclusive Offer",style: TextStyle(fontSize: 24,color: Colors.black,fontWeight: FontWeight.bold),),
             Text("See all",style: TextStyle(fontSize: 16,color: Color(0xFF53B175)),)
