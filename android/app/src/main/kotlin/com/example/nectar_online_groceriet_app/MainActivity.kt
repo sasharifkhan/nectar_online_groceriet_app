@@ -1,4 +1,4 @@
-package com.example.nectar_online_groceriet_app
+package com.nectar.nectar_online_groceriet_app
 
 import io.flutter.embedding.android.FlutterActivity
 

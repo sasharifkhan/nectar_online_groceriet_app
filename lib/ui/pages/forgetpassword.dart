@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/forgetlinksent.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
+import 'package:Nectar/logic/auth/authentication.dart';
+import 'package:Nectar/ui/pages/forgetlinksent.dart';
+import 'package:Nectar/ui/widgets/plainedtextfield.dart';
+import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
 
 class ForgetpasswordPage extends StatefulWidget {
   const ForgetpasswordPage({super.key});

@@ -2,13 +2,13 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/logic/auth/authentication.dart';
-import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/forgetpassword.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/singuppage.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/plainedtextfield.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
+import 'package:Nectar/logic/auth/authentication.dart';
+import 'package:Nectar/logic/auth/providerdata.dart';
+import 'package:Nectar/ui/pages/forgetpassword.dart';
+import 'package:Nectar/ui/pages/selectlocation.dart';
+import 'package:Nectar/ui/pages/singuppage.dart';
+import 'package:Nectar/ui/widgets/plainedtextfield.dart';
+import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
 import 'package:provider/provider.dart';
 
 class Loginpage extends StatefulWidget {

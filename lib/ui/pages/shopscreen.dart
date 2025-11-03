@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/exclusiveofferitems.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/grocerieslist.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/searchbox.dart';
+import 'package:Nectar/ui/widgets/grocerieslist.dart';
+import 'package:Nectar/ui/widgets/productitemsgridview.dart';
+import 'package:Nectar/ui/widgets/searchbox.dart';
 
 class Shopscreen extends StatelessWidget {
   const Shopscreen({super.key});

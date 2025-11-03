@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/onboardingscreen.dart';
+import 'package:Nectar/ui/pages/onboardingscreen.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});

@@ -3,9 +3,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
-        android:label="nectar_online_groceriet_app"
+        android:label="Nectar"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/nectar_round">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/logic/applogic/appscreenswitch.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/shopscreen.dart';
+import 'package:Nectar/logic/applogic/appscreenswitch.dart';
+import 'package:Nectar/ui/pages/shopscreen.dart';
 import 'package:provider/provider.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 
@@ -31,7 +31,7 @@ class _HomescreenState extends State<Homescreen> {
       );
       },),
       bottomNavigationBar: Consumer<Appscreenswitch>(builder: (ctx, provider, _) {
-        return Container(height: 70, decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)), child: ClipRRect(borderRadius: BorderRadius.circular(16), child: BottomNavigationBar(type: BottomNavigationBarType.fixed, selectedItemColor: Color(0xFF53B175), backgroundColor: Colors.white, currentIndex: provider.selectedIndex, onTap: (index) => provider.appscreenswitch(index), items: [
+        return Container(height: 85, decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)), child: ClipRRect(borderRadius: BorderRadius.circular(16), child: BottomNavigationBar(type: BottomNavigationBarType.fixed, selectedItemColor: Color(0xFF53B175), backgroundColor: Colors.white, currentIndex: provider.selectedIndex, onTap: (index) => provider.appscreenswitch(index), items: [
           BottomNavigationBarItem(label: "Shop", icon: ImageIcon(AssetImage("lib/assets/icons/shop.png"), size: 24),),
           BottomNavigationBarItem(label: "Explore", icon: ImageIcon(AssetImage("lib/assets/icons/explore.png"), size: 24),),
           BottomNavigationBarItem(label: "Cart", icon: ImageIcon(AssetImage("lib/assets/icons/cart.png"), size: 24),),

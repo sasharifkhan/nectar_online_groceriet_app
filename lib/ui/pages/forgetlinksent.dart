@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/loginpage.dart';
-import 'package:nectar_online_groceriet_app/ui/widgets/rectangleroundedbutton.dart';
+import 'package:Nectar/ui/pages/loginpage.dart';
+import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
 
 class Forgetlinksent extends StatelessWidget {
   const Forgetlinksent({super.key});

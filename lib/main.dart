@@ -3,11 +3,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:nectar_online_groceriet_app/logic/applogic/appscreenswitch.dart';
-import 'package:nectar_online_groceriet_app/logic/auth/providerdata.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/homescreen.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/selectlocation.dart';
-import 'package:nectar_online_groceriet_app/ui/pages/splashscreen.dart';
+import 'package:Nectar/logic/applogic/appscreenswitch.dart';
+import 'package:Nectar/logic/auth/providerdata.dart';
+import 'package:Nectar/ui/pages/homescreen.dart';
+import 'package:Nectar/ui/pages/selectlocation.dart';
+import 'package:Nectar/ui/pages/splashscreen.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {

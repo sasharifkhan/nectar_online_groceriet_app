@@ -1,4 +1,4 @@
-# nectar_online_groceriet_app
+# Nectar
 
 A new Flutter project.
 
