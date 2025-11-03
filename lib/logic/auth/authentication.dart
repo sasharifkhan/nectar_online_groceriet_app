@@ -9,25 +9,30 @@ class LoginCheck{
    Future<String?> Login(String username, String password) async {
 
     final token = GetStorage();
-    const String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    const String baseurl = 'https://api.zhndev.site/wp-json';
     const String loginpath = '/base/api/auth/login';
 
     try{
-    var response =  await http.post(Uri.parse('$baseurl$loginpath'),body: {
-      "email": username, 
-      "password": password
-    });
+    var response =  await http.post(Uri.parse('$baseurl$loginpath'),body: 
+      {
+        "username": username,
+        "password": password
+      }
+    );
 
-    if(response.statusCode == 200){
-      print("Okay");
+    if(response.statusCode == 200 || response.statusCode == 201){
       var data = jsonDecode(response.body);
       String tokendata =  data['data']['token'];
       token.write('token',tokendata);
-      return tokendata;
-    } return null;
+      String message = data['message'];
+      return message;
+    } else{
+      var data = jsonDecode(response.body);
+      String message = data['message'];
+      return message;
+    }
     
     } catch (e){
-      print(e);
       return null;
     }
     
@@ -38,7 +43,7 @@ class LoginCheck{
 class RegisterNew{
   Future<String?>  Register(String firstname, String lastname, String username,String email, String password) async {
     final token = GetStorage();
-    const String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    const String baseurl = 'https://api.zhndev.site/wp-json';
     const String registerpath = '/base/api/auth/register';
     try {
       var response = await http.post(Uri.parse('$baseurl$registerpath'),body: {
@@ -49,14 +54,23 @@ class RegisterNew{
         "last_name": lastname
         });
 
-      if (response.statusCode == 201){
+      if (response.statusCode == 201 || response.statusCode == 200){
         var data = jsonDecode(response.body);
         String tokendata = data['data']['token'];
         token.write('token', tokendata);
-        return tokendata;
+        String message = data['message'];
+        return message;
 
-      } print(response.statusCode); return null;
-      
+      } else if (response.statusCode == 400){
+        var data = jsonDecode(response.body);
+        String message = data['message'];
+        return message;
+
+      } else {
+        String message = 'Server Error';
+        return message;
+      }
+
     } catch (e){
       print(e);
       return null;
@@ -66,7 +80,7 @@ class RegisterNew{
 
 class ForgetPassword{
   Forgetpassword(String email) async{
-    final String baseurl = 'https://demo.zhndev.site/wp/wp-json';
+    final String baseurl = 'https://api.zhndev.site/wp-json';
     final String path = '/base/api/auth/forgot-password';
     var response = await http.post(Uri.parse('$baseurl$path'),body: 
       {
@@ -74,9 +88,6 @@ class ForgetPassword{
       } 
     );
     return response.statusCode;
-    // if (response.statusCode == 200) {
-    //   print(response.body);
-    // }
   }
 }
 

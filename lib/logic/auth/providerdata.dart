@@ -1,37 +1,48 @@
 import 'package:flutter/foundation.dart';
 
 class Providerdata extends ChangeNotifier {
-  bool _passwordshow = false;
 
-  bool get passwordshowdetais => _passwordshow;
-  void tooglePasswordShowHide(){
-    _passwordshow = !_passwordshow;
+
+///////////////////////Password Show Hide LoginPage/////////////////////////////
+  bool _passwordshowlogin = false;
+  bool get passwordshowloigndetaislogin => _passwordshowlogin;
+
+  void tooglePasswordShowHideLogin(){
+    _passwordshowlogin = !_passwordshowlogin;
     notifyListeners();
   }
+///////////////////////Password Show Hide RegPage/////////////////////////////
+  bool _passwordshowreg = false;
+  bool get passwordshowloigndetaisreg => _passwordshowreg;
 
-  bool _isLogin = false;
-  String? _token;
-
-  bool get isLogin => _isLogin;
-  String? get token => _token;
-
-  void logedIn(String token){
-    _isLogin = true;
-    _token = token;
+  void tooglePasswordShowHideReg(){
+    _passwordshowreg = !_passwordshowreg;
     notifyListeners();
-
   }
-
+///////////////////////////Save Curent Location/////////////////////////////
   String? _currentlocation;
-
   String? get currentlocation => _currentlocation;
 
   void saveLocation(currentlocation){
     _currentlocation = currentlocation;
     notifyListeners();
-
   }
+/////////////////////////Registration Check///////////////////////////
+  String _message = '';
+  String get message => _message;
 
+  void registrationcheck(message){
+    _message = message;
+    notifyListeners();
+  }
+///////////////////////////Login Check/////////////////////////
 
+  String _messagelogin = '';
+  String get messagelogin => _messagelogin;
 
+  void logincheck(messagelogin){
+    _messagelogin = messagelogin;
+    notifyListeners();
+  }
+////////////////////////////////////////////////////
 }

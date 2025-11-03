@@ -18,7 +18,7 @@ class Onboardingscreen extends StatelessWidget {
             Text("Ger your groceries in as fast as one hour",style: TextStyle(fontSize: 16,color: Colors.grey),),
             SizedBox(height: 25,),
             Rectangleroundedbutton(buttonName: "Get Started",buttonbgcolor: Color(0xFF53B175),callback: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage(),));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Loginpage(),));
             },)
           ],),
         ), ),

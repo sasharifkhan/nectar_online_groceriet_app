@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:Nectar/ui/pages/loginpage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:Nectar/logic/auth/authentication.dart';
@@ -22,7 +23,6 @@ class _SinguppageState extends State<Singuppage> {
   var signupUserlastname = TextEditingController();
   var signupEmail  = TextEditingController();
   var signupPassword = TextEditingController();
-  bool usernameAlreadyExist = false;
 
 
   @override
@@ -63,12 +63,15 @@ class _SinguppageState extends State<Singuppage> {
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
             Consumer<Providerdata>(builder: (ctx, provider, child) {
-              bool passwordshowdetais = provider.passwordshowdetais;
+              bool passwordshowdetais = provider.passwordshowloigndetaisreg;
               return Plainedtextfield(callback: () {
-                provider.tooglePasswordShowHide();
+                provider.tooglePasswordShowHideReg();
               }, obs: passwordshowdetais, controller: signupPassword, textboxHintText: "*********",textboxIcon: passwordshowdetais==false?Icon(Icons.visibility):Icon(Icons.visibility_off),);
             },),
-            usernameAlreadyExist == true? Text("This email is already exists!",style: TextStyle(color: Colors.red, fontSize: 14),):Text('',style: TextStyle(fontSize: 14),),
+            Consumer<Providerdata>(builder: (ctx, provider, _) {
+              String message =  provider.message;
+              return Text(message,style: TextStyle(color: Colors.red, fontSize: 14),);
+            },),
             RichText(text: TextSpan(children: [
               TextSpan(text: "By continuing you agree to our ", style: TextStyle(color: Colors.black)),
               TextSpan(text: "Terms of Service",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){}),
@@ -76,24 +79,24 @@ class _SinguppageState extends State<Singuppage> {
               TextSpan(text: "Privacy Policy.",style: TextStyle(color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap=(){})
               ])),
           ],),
-          
 
-          Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
-            var token = await RegisterNew().Register(signupUserfirstname.text,signupUserlastname.text,signupUsername.text,signupEmail.text,signupPassword.text);
-            if (token != null){
-              context.read<Providerdata>().logedIn(token);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
-            } else{
-              setState(() {
-                usernameAlreadyExist = true;
-              });
-            }
-          }),
+          Consumer<Providerdata>(builder: (ctx, provider, _) {
+            return Rectangleroundedbutton(buttonName: 'Sign Up', buttonbgcolor: Color(0xFF53B175), callback: () async {
+              if(signupUserfirstname.text.isNotEmpty && signupUserlastname.text.isNotEmpty && signupUsername.text.isNotEmpty && signupEmail.text.isNotEmpty && signupPassword.text.isNotEmpty){
+                var message = await RegisterNew().Register(signupUserfirstname.text,signupUserlastname.text,signupUsername.text,signupEmail.text,signupPassword.text);
+                provider.registrationcheck(message);
+                if (message == 'Registration successful'){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
+                } 
+              }
+
+          });
+          },),
           Center(
             child: RichText(text: TextSpan(children: [
               TextSpan(text: "Already have an account? ",style: TextStyle(fontSize: 14,color: Colors.black)),
               TextSpan(text: "Login", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){
-                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage(),));
               })
             ])),
           )

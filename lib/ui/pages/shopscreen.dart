@@ -29,7 +29,7 @@ class Shopscreen extends StatelessWidget {
           SizedBox(height: 20,),
           SizedBox(height: 115, width: double.infinity,
             child: CarouselSlider(items: [
-              Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)), child: Image(image: AssetImage("lib/assets/images/banner.png"),fit: BoxFit.cover,width: double.infinity,),)
+              Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)), child: ClipRRect(child: Image(image: AssetImage("lib/assets/images/banner.png"),fit: BoxFit.cover,width: double.infinity,)),)
             ], options: CarouselOptions(viewportFraction: 1)),
           ),
           SizedBox(height: 20,),

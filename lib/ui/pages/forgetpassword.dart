@@ -32,12 +32,12 @@ class _ForgetpasswordPageState extends State<ForgetpasswordPage> {
             Plainedtextfield(textboxHintText: "email@example.com",controller: inputEmail,),
           ],),
           Rectangleroundedbutton(buttonName: "Forget",callback: ()  async{
-            if (inputEmail.text.isEmpty){
-            } else {
+            if (inputEmail.text.isNotEmpty){
             int statuscode =  await ForgetPassword().Forgetpassword(inputEmail.text);
             if (statuscode == 200){
               Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetlinksent(),));
-            }}
+            }
+            }
             },buttonbgcolor: Color(0xFF53B175),),
         ],),
       ),),),

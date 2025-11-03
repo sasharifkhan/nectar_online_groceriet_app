@@ -14,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   final token = GetStorage().read('token');
+  // final token2 = GetStorage().remove('token');
 
 
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,routes: {
-        'login' : (_)=> Homescreen(),
+        'login' : (_)=> Splashscreen(),
         'alreadyloggedin': (_)=> Selectlocation()
       },
       title: 'nectar',
