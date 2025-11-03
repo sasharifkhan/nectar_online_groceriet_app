@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Providerdata extends ChangeNotifier {
 
@@ -44,5 +45,11 @@ class Providerdata extends ChangeNotifier {
     _messagelogin = messagelogin;
     notifyListeners();
   }
-////////////////////////////////////////////////////
+////////////////////////////Remove Auth Token////////////////////////
+
+  void tokenremove(){
+    GetStorage().remove('token');
+    notifyListeners();
+  }
+
 }

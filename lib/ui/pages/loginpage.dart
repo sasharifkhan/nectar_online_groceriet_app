@@ -78,7 +78,7 @@ class _LoginpageState extends State<Loginpage> {
             child: RichText(text: TextSpan(children: [
               TextSpan(text: "Don’t have an account? ",style: TextStyle(fontSize: 14,color: Colors.black)),
               TextSpan(text: "SignUp", style: TextStyle(fontSize: 14,color: Color(0xFF53B175)),recognizer: TapGestureRecognizer()..onTap= (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Singuppage(),));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Singuppage(),));
               })
             ])),
           )

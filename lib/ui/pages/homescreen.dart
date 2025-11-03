@@ -1,3 +1,7 @@
+import 'package:Nectar/ui/pages/account.dart';
+import 'package:Nectar/ui/pages/cart.dart';
+import 'package:Nectar/ui/pages/explorepage.dart';
+import 'package:Nectar/ui/pages/favorite.dart';
 import 'package:Nectar/ui/widgets/bottomnavitems.dart';
 import 'package:flutter/material.dart';
 import 'package:Nectar/logic/applogic/appscreenswitch.dart';
@@ -22,10 +26,10 @@ class _HomescreenState extends State<Homescreen> {
         return IndexedStack( index: provider.selectedIndex,
         children: [
           Shopscreen(),
-          Center(child: Text("Explore")),
-          Center(child: Text("Cart")),
-          Center(child: Text("Favorite")),
-          Center(child: Text("Account")),
+          Explorepage(),
+          Cart(),
+          Favorite(),
+          Account()
         ],
       );
       },),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ProductItemsGridview extends StatelessWidget {
+class Categoriesproductgridview extends StatelessWidget {
   final String productname;
   final String productdescription;
   final String productprice;
   final int itemCount;
   final VoidCallback?callback;
   final AssetImage productimage;
-  const ProductItemsGridview({super.key, required this.productname, required this.productdescription, required this.productprice, required this.itemCount, this.callback, required this.productimage});
+  const Categoriesproductgridview({super.key, required this.productname, required this.productdescription, required this.productprice, required this.itemCount, this.callback, required this.productimage});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 250, child: GridView.builder(itemCount: itemCount,padding: EdgeInsets.all(10), scrollDirection: Axis.horizontal, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(mainAxisExtent: 174, mainAxisSpacing: 15, crossAxisCount: 1), itemBuilder: (context, index) => Container(
+    return GridView.builder(itemCount: itemCount,padding: EdgeInsets.all(10), scrollDirection: Axis.vertical, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(mainAxisExtent: 250, mainAxisSpacing: 15, crossAxisCount: 2,crossAxisSpacing: 15), itemBuilder: (context, index) => Container(
             height: 250,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -30,6 +30,6 @@ class ProductItemsGridview extends StatelessWidget {
                 ],)
               ],),
             ),
-          ),),);
+          ),);
   }
 }
