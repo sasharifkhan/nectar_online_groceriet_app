@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
 
+import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:Nectar/logic/location_services/getcurrentlocation.dart';
 import 'package:Nectar/ui/pages/homescreen.dart';
 import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
+import 'package:provider/provider.dart';
 
 class Selectlocation extends StatefulWidget {
   const Selectlocation({super.key});
@@ -28,18 +30,14 @@ class _SelectlocationState extends State<Selectlocation> {
         padding: const EdgeInsets.only(left: 20,right: 20,top: 80,bottom: 50),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            InkWell(onTap: () async {
-              final location = await LocationService.getCurrentLocation();
-              print("Lat: ${location['latitude']}");
-              print("Lng: ${location['longitude']}");
-              print("Place: ${location['place']}");
-            }, child: Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,)),
+            Image(image: AssetImage("lib/assets/images/select_location_img.png"),height: 170, width: 225,),
             SizedBox(height: 40,),
             Text("Select Your Location",style: TextStyle(fontSize: 26,fontWeight: FontWeight.bold),),
             SizedBox(height: 15,),
             Text("Switch on your location to stay in tune with what’s happening in your area",style: TextStyle(fontSize: 16),textAlign: TextAlign.center,),
           ],),
-          Rectangleroundedbutton(buttonName: 'Submit', buttonbgcolor: Color(0xFF53B175), callback: (){
+          Rectangleroundedbutton(buttonName: 'Submit', buttonbgcolor: Color(0xFF53B175), callback: ()async{
+            await Provider.of<Locationprovider>(listen: false, context).getloctionfromdevice();
             Navigator.push(context, MaterialPageRoute(builder: (context) => Homescreen(),));
           })
         ],),

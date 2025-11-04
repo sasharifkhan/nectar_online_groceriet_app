@@ -29,11 +29,11 @@ class _ForgetpasswordPageState extends State<ForgetpasswordPage> {
             Text("Enter your email to continue",style: TextStyle(fontSize: 16),),
             SizedBox(height: 30,),
             Text("Email",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(textboxHintText: "email@example.com",controller: inputEmail,),
+            Plainedtextfield(keyboardType: TextInputType.emailAddress,textboxHintText: "email@example.com",controller: inputEmail,),
           ],),
           Rectangleroundedbutton(buttonName: "Forget",callback: ()  async{
             if (inputEmail.text.isNotEmpty){
-            int statuscode =  await ForgetPassword().Forgetpassword(inputEmail.text);
+            int statuscode =  await ForgetPassword().forgetpassword(inputEmail.text);
             if (statuscode == 200){
               Navigator.push(context, MaterialPageRoute(builder: (context) => Forgetlinksent(),));
             }

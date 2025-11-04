@@ -49,6 +49,7 @@ class Providerdata extends ChangeNotifier {
 
   void tokenremove(){
     GetStorage().remove('token');
+    GetStorage().remove('location');
     notifyListeners();
   }
 

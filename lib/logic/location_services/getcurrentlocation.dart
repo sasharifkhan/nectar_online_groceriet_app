@@ -15,19 +15,21 @@ class LocationService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw Exception("Location permission denied.");
+        // throw Exception("Location permission denied.");
+        return {"place": "Unknown"};
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw Exception("Location permission permanently denied.");
+      // throw Exception("Location permission permanently denied.");
+      return {"place": "Unknown"};
     }
 
     final pos = await Geolocator.getCurrentPosition(
       locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
     );
 
-    String placeName = "Unknown Location";
+    String placeName = "Unknown";
 
     try {
       List<Placemark> placemarks =

@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
@@ -6,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 
 class LoginCheck{
-   Future<String?> Login(String username, String password) async {
+   Future<String?> login(String username, String password) async {
 
     final token = GetStorage();
     const String baseurl = 'https://api.zhndev.site/wp-json';
@@ -41,7 +40,7 @@ class LoginCheck{
 }
 
 class RegisterNew{
-  Future<String?>  Register(String firstname, String lastname, String username,String email, String password) async {
+  Future<String?>  register(String firstname, String lastname, String username,String email, String password) async {
     final token = GetStorage();
     const String baseurl = 'https://api.zhndev.site/wp-json';
     const String registerpath = '/base/api/auth/register';
@@ -72,14 +71,13 @@ class RegisterNew{
       }
 
     } catch (e){
-      print(e);
       return null;
     }
   }
 }
 
 class ForgetPassword{
-  Forgetpassword(String email) async{
+  forgetpassword(String email) async{
     final String baseurl = 'https://api.zhndev.site/wp-json';
     final String path = '/base/api/auth/forgot-password';
     var response = await http.post(Uri.parse('$baseurl$path'),body: 

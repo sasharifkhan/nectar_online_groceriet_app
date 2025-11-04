@@ -1,5 +1,8 @@
 // ignore_for_file: unused_import
 
+import 'package:Nectar/logic/auth/authentication.dart';
+import 'package:Nectar/logic/providers/locationprovider.dart';
+import 'package:Nectar/logic/providers/profiledetailsprovider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -14,15 +17,27 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   final token = GetStorage().read('token');
+  final location = GetStorage().read('location');
+
   // final token2 = GetStorage().remove('token');
+  String route;
+  if(token != null && location != null){
+    route = 'alreadyhavelocation';
+  } else if (token != null && location == null ){
+    route = 'alreadyloggedin';
+  } else {
+    route = 'login';
+  }
 
 
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => Appscreenswitch()),
-    ChangeNotifierProvider(create: (context) => Providerdata(),)
-  ],child: MyApp(initialRoute: token != null ? 'alreadyloggedin':'login'), ));
-  // runApp(DevicePreview(builder: (context) => MyApp(),));
+    ChangeNotifierProvider(create: (context) => Providerdata(),),
+    ChangeNotifierProvider(create: (context) => Locationprovider(),),
+    ChangeNotifierProvider(create: (context) => Profiledetailsprovider(),)
+  ],child: MyApp(initialRoute: route), ));
+    // runApp(DevicePreview(builder: (context) => MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +49,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: initialRoute,routes: {
         'login' : (_)=> Splashscreen(),
-        'alreadyloggedin': (_)=> Selectlocation()
+        'alreadyloggedin': (_)=> Selectlocation(),
+        'alreadyhavelocation': (_)=> Homescreen()
       },
       title: 'nectar',
       theme: ThemeData(),

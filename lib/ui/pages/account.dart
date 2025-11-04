@@ -1,4 +1,5 @@
 import 'package:Nectar/logic/auth/providerdata.dart';
+import 'package:Nectar/logic/providers/profiledetailsprovider.dart';
 import 'package:Nectar/ui/pages/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,11 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<Profiledetailsprovider>(listen: false, context).getprofileDetails();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -21,13 +27,15 @@ class _AccountState extends State<Account> {
           child: Row( children: [
             ClipRRect(borderRadius: BorderRadius.circular(50), child: Image(image: AssetImage("lib/assets/icons/profile.png"),height: 64,width: 64,)),
             SizedBox(width: 10,),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Consumer<Profiledetailsprovider>(builder: (_, proviver, _){
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                Text("SK SHARIF KHAN",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                Text(proviver.displayname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                 IconButton(onPressed: (){}, icon: Icon(Icons.edit_outlined),color: Color(0xFF53B175),)
               ],),
-              Text("sharif@gmail.com",style: TextStyle(fontSize: 16),)
-            ],)
+              Text(proviver.email,style: TextStyle(fontSize: 16),)
+            ],);
+            },)
           ],),
         ),
         Padding(

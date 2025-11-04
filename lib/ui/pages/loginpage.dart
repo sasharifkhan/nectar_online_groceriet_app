@@ -37,13 +37,13 @@ class _LoginpageState extends State<Loginpage> {
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Username",style: TextStyle(fontSize: 16),),
-            Plainedtextfield(textboxHintText: "Enter your username.",controller: InputUsername,),
+            Plainedtextfield(keyboardType: TextInputType.name, textboxHintText: "Enter your username.",controller: InputUsername,),
           ],),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Password",style: TextStyle(fontSize: 16),),
             Consumer<Providerdata>(builder: (ctx, provider, child) {
               bool passwordshowdetais = provider.passwordshowloigndetaislogin;
-              return Plainedtextfield(callback: () {
+              return Plainedtextfield(keyboardType: TextInputType.visiblePassword, callback: () {
               provider.tooglePasswordShowHideLogin();
             }, obs: passwordshowdetais, controller: InputPassword, textboxHintText: "Enter your password",textboxIcon: passwordshowdetais == true? Icon(Icons.visibility_off):Icon(Icons.visibility),);
             },),
@@ -62,7 +62,7 @@ class _LoginpageState extends State<Loginpage> {
             Consumer<Providerdata>(builder: (_, provider, _) {
               return Rectangleroundedbutton(buttonName: "Log IN",callback: () async {
                 if (InputUsername.text.isNotEmpty && InputPassword.text.isNotEmpty){
-                  var messagelogin = await LoginCheck().Login(InputUsername.text,InputPassword.text);
+                  var messagelogin = await LoginCheck().login(InputUsername.text,InputPassword.text);
                   provider.logincheck(messagelogin);
                   if(messagelogin == "Login successful"){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
