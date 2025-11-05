@@ -2,7 +2,6 @@
 
 import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:flutter/material.dart';
-import 'package:Nectar/logic/location_services/getcurrentlocation.dart';
 import 'package:Nectar/ui/pages/homescreen.dart';
 import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
 import 'package:provider/provider.dart';
