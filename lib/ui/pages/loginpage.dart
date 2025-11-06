@@ -21,12 +21,14 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   var InputUsername = TextEditingController();
   var InputPassword = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/assets/images/login_page_bg.png'),fit: BoxFit.cover)),child: 
+      body: Stack(children: [
+      Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/assets/images/login_page_bg.png'),fit: BoxFit.cover)),child: 
       Center(child: Padding(
         padding: const EdgeInsets.only(left: 20,right: 20,top: 40,bottom: 50),
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,  crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -62,8 +64,16 @@ class _LoginpageState extends State<Loginpage> {
             Consumer<Providerdata>(builder: (_, provider, _) {
               return Rectangleroundedbutton(buttonName: "Log IN",callback: () async {
                 if (InputUsername.text.isNotEmpty && InputPassword.text.isNotEmpty){
+                  String messagelogins = "";
+                  provider.logincheck(messagelogins);
+                  setState(() {
+                    isLoading = true;
+                  });
                   var messagelogin = await LoginCheck().login(InputUsername.text,InputPassword.text);
                   provider.logincheck(messagelogin);
+                  setState(() {
+                    isLoading = false;
+                  });
                   if(messagelogin == "Login successful"){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Selectlocation(),));
                   }
@@ -84,6 +94,8 @@ class _LoginpageState extends State<Loginpage> {
           )
         ],),
       ),),),
+      if (isLoading == true)Container(decoration: BoxDecoration(color: Colors.black45,), child: Center(child: CircularProgressIndicator(color: Colors.white,)),)
+      ],),
     );
   }
 }

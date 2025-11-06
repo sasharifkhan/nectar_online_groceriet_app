@@ -29,8 +29,6 @@ Future<void> main() async {
     route = 'login';
   }
 
-
-
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => Appscreenswitch()),
     ChangeNotifierProvider(create: (context) => Providerdata(),),

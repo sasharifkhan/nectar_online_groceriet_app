@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 class Locationprovider extends ChangeNotifier {
 
-  String? _locationdetails;
+  String _locationdetails = "Unknown Location";
   get locationdetails => _locationdetails;
 
   void setlicationfromgetstorate(){
@@ -17,11 +17,6 @@ class Locationprovider extends ChangeNotifier {
   getloctionfromdevice()async {
     final getstorage =  GetStorage();
     final location = await LocationService.getCurrentLocation();
-    print("Lat: ${location['latitude']}");
-    print("Lng: ${location['longitude']}");
-    print("Place: ${location['place']}");
-    // String locationlatlong = '${location['latitude']},${location['longitude']}';
-    
     String locationplace = '${location['place']}';
     getstorage.write('location', locationplace);
     _locationdetails = locationplace;

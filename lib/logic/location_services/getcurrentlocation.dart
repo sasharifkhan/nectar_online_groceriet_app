@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
+// import 'package:geocoding/geocoding.dart';
+import 'package:http/http.dart' as http;
 
 class LocationService {
   static Future<Map<String, dynamic>> getCurrentLocation() async {
@@ -31,17 +34,18 @@ class LocationService {
 
     String placeName = "Unknown";
 
-    try {
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(pos.latitude, pos.longitude);
-
-      if (placemarks.isNotEmpty) {
-        final place = placemarks.first;
-        placeName = "${place.locality ?? ''}, ${place.country ?? ''}".trim();
-      }
+    try{
+      var resposnse = await http.get(Uri.parse("https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${pos.latitude}&lon=${pos.longitude}&accept-language=en"),headers: {'User-Agent': 'Nectar/1.0'});
+        if (resposnse.statusCode == 200 || resposnse.statusCode == 201) {
+          var jsonlocationn = jsonDecode(resposnse.body);
+          placeName = "${jsonlocationn['address']['road']}, ${jsonlocationn['address']['city']}";
+        } else {
+          placeName = "Unknown Location";
+        }
     } catch (e) {
       placeName = "Unknown Location";
     }
+
 
     return {
       "latitude": pos.latitude,
