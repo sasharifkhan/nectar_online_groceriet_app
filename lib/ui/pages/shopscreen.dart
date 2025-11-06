@@ -1,3 +1,4 @@
+import 'package:Nectar/logic/providers/getproductsprovider.dart';
 import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:Nectar/ui/pages/productdetails.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -15,6 +16,12 @@ class Shopscreen extends StatefulWidget {
 }
 
 class _ShopscreenState extends State<Shopscreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<Getproductsprovider>(listen: false, context).getproducts();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

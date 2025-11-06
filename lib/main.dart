@@ -1,6 +1,8 @@
 // ignore_for_file: unused_import
 
 import 'package:Nectar/logic/auth/authentication.dart';
+import 'package:Nectar/logic/providers/getproductcategoresprovider.dart';
+import 'package:Nectar/logic/providers/getproductsprovider.dart';
 import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:Nectar/logic/providers/profiledetailsprovider.dart';
 import 'package:device_preview/device_preview.dart';
@@ -33,7 +35,9 @@ Future<void> main() async {
     ChangeNotifierProvider(create: (context) => Appscreenswitch()),
     ChangeNotifierProvider(create: (context) => Providerdata(),),
     ChangeNotifierProvider(create: (context) => Locationprovider(),),
-    ChangeNotifierProvider(create: (context) => Profiledetailsprovider(),)
+    ChangeNotifierProvider(create: (context) => Profiledetailsprovider(),),
+    ChangeNotifierProvider(create: (context) => Getproductcategoresprovider(),),
+    ChangeNotifierProvider(create: (context) => Getproductsprovider())
   ],child: MyApp(initialRoute: route), ));
     // runApp(DevicePreview(builder: (context) => MyApp(),));
 }
