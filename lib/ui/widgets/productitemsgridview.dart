@@ -6,8 +6,9 @@ class ProductItemsGridview extends StatelessWidget {
   final String productprice;
   final int itemCount;
   final VoidCallback?callback;
+  final VoidCallback?callbackforbox;
   final AssetImage productimage;
-  const ProductItemsGridview({super.key, required this.productname, required this.productdescription, required this.productprice, required this.itemCount, this.callback, required this.productimage});
+  const ProductItemsGridview({super.key, required this.productname, required this.productdescription, required this.productprice, required this.itemCount, this.callback, required this.productimage, this.callbackforbox});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +22,12 @@ class ProductItemsGridview extends StatelessWidget {
             ),child: Padding(
               padding: const EdgeInsets.all(15),
               child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Center(child: Image(image: productimage,height: 80,width: 99,)),
+                InkWell(onTap: callbackforbox, child: Center(child: Image(image: productimage,height: 80,width: 99,))),
                 Text(productname,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                 Text(productdescription,style: TextStyle(fontSize: 14),),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   Text(productprice,style: TextStyle(fontSize: 18,color: Colors.black),),
-                  IconButton(onPressed: (){}, icon: Image(image: AssetImage("lib/assets/icons/add_button.png"),height: 45,width: 45,))
+                  IconButton(onPressed: callback, icon: Image(image: AssetImage("lib/assets/icons/add_button.png"),height: 45,width: 45,))
                 ],)
               ],),
             ),
