@@ -4,7 +4,6 @@ import 'package:Nectar/services/apiservices/apirequest/userregister.dart';
 import 'package:Nectar/ui/pages/loginpage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:Nectar/logic/auth/authentication.dart';
 import 'package:Nectar/logic/auth/providerdata.dart';
 import 'package:Nectar/ui/pages/selectlocation.dart';
 import 'package:Nectar/ui/widgets/plainedtextfield.dart';
