@@ -40,7 +40,7 @@ class LoginCheck{
 }
 
 class RegisterNew{
-  Future<String?>  register(String firstname, String lastname, String username,String email, String password) async {
+  Future<String?>  register(String firstname,  String username,String email, String password) async {
     final token = GetStorage();
     const String baseurl = 'https://api.zhndev.site/wp-json';
     const String registerpath = '/base/api/auth/register';
@@ -50,7 +50,6 @@ class RegisterNew{
         "email": email,
         "password": password,
         "first_name": firstname,
-        "last_name": lastname
         });
 
       if (response.statusCode == 201 || response.statusCode == 200){

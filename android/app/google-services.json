@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "750569481787",
+    "project_id": "nectar-d9127",
+    "storage_bucket": "nectar-d9127.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750569481787:android:e9feb3b4e0248bb5119e1e",
+        "android_client_info": {
+          "package_name": "com.nectar.nectar_online_groceriet_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750569481787-e1n70l8tfop32ub7ttko5og1lts5a3ht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nectar.nectar_online_groceriet_app",
+            "certificate_hash": "afbace870257ff952c976923eab9577c62cbe164"
+          }
+        },
+        {
+          "client_id": "750569481787-gh21b439ok656updk3i8a8eus2co0kdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbttLyorAqrOzHrg9gYRv5gkY_Ti0Q_0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750569481787-gh21b439ok656updk3i8a8eus2co0kdr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "750569481787-e4g3dscu0ncdc8uf5b698i899fq52r6m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nectarOnlineGrocerietApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
