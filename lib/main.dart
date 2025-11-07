@@ -2,10 +2,10 @@
 
 import 'package:Nectar/firebase_options.dart';
 import 'package:Nectar/logic/auth/authentication.dart';
-import 'package:Nectar/logic/providers/getproductcategoresprovider.dart';
-import 'package:Nectar/logic/providers/getproductsprovider.dart';
 import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:Nectar/logic/providers/profiledetailsprovider.dart';
+import 'package:Nectar/services/providers/categoriesprovider.dart';
+import 'package:Nectar/services/providers/productsprovider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +42,8 @@ Future<void> main() async {
     ChangeNotifierProvider(create: (context) => Providerdata(),),
     ChangeNotifierProvider(create: (context) => Locationprovider(),),
     ChangeNotifierProvider(create: (context) => Profiledetailsprovider(),),
-    ChangeNotifierProvider(create: (context) => Getproductcategoresprovider(),),
-    ChangeNotifierProvider(create: (context) => Getproductsprovider())
+    ChangeNotifierProvider(create: (context) => Productsprovider(),),
+    ChangeNotifierProvider(create: (context) => Categoriesprovider())
   ],child: MyApp(initialRoute: route), ));
     // runApp(DevicePreview(builder: (context) => MyApp(),));
 }

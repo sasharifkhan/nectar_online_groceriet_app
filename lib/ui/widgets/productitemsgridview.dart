@@ -23,7 +23,7 @@ class ProductItemsGridview extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, crossAxisAlignment: CrossAxisAlignment.start, children: [
                 InkWell(onTap: callbackforbox, child: Center(child: Image(image: productimage,height: 80,width: 99,))),
-                Text(productname,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                Text(productname,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
                 Text(productdescription,style: TextStyle(fontSize: 14),),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   Text(productprice,style: TextStyle(fontSize: 18,color: Colors.black),),

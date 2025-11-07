@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:Nectar/logic/models/categoriesmodel.dart';
-import 'package:Nectar/logic/providers/getproductcategoresprovider.dart';
+import 'package:Nectar/services/models/categoriesmodel.dart';
+import 'package:Nectar/services/providers/categoriesprovider.dart';
 import 'package:Nectar/ui/pages/categoriesproduct.dart';
 import 'package:Nectar/ui/widgets/searchbox.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _ExplorepageState extends State<Explorepage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<Getproductcategoresprovider>(listen: false, context).getproductcategories();
+    Provider.of<Categoriesprovider>(listen: false, context).categories();
   }
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _ExplorepageState extends State<Explorepage> {
           Text("Find Products",style: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold),),
           SizedBox(height: 20,),
           Searchbox(),
-          Expanded(child: Consumer<Getproductcategoresprovider>(builder: (ctx, provider, _) {
+          Expanded(child: Consumer<Categoriesprovider>(builder: (ctx, provider, _) {
             List<Categoriesmodel> productcategories = provider.productcategories;
             if(provider.isloading){
               return Center(child: CircularProgressIndicator());

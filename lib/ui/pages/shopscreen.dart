@@ -1,5 +1,6 @@
-import 'package:Nectar/logic/providers/getproductsprovider.dart';
 import 'package:Nectar/logic/providers/locationprovider.dart';
+import 'package:Nectar/services/models/allproductmodel.dart';
+import 'package:Nectar/services/providers/productsprovider.dart';
 import 'package:Nectar/ui/pages/productdetails.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _ShopscreenState extends State<Shopscreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<Getproductsprovider>(listen: false, context).getproducts();
+    Provider.of<Productsprovider>(listen: false, context).getallproduct();
   }
   @override
   Widget build(BuildContext context) {
@@ -111,7 +112,9 @@ class _ShopscreenState extends State<Shopscreen> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    ProductItemsGridview(
+                    Consumer<Productsprovider>(builder: (_, provider, _) {
+                      List<Allproductmodel>allproducts = provider.allproducts;
+                      return ProductItemsGridview(
                       callbackforbox: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -119,13 +122,14 @@ class _ShopscreenState extends State<Shopscreen> {
                         ),
                       ),
                       itemCount: 5,
-                      productname: "Organic Bananas",
-                      productdescription: '7pcs, Price',
-                      productprice: "#4.99",
+                      productname: allproducts[1].name,
+                      productdescription: allproducts[0].stockStatus,
+                      productprice: allproducts[1].price,
                       productimage: AssetImage(
                         "lib/assets/productimages/banana.png",
                       ),
-                    ),
+                    );
+                    },),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
