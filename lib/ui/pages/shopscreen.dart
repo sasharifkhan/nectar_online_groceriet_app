@@ -115,19 +115,7 @@ class _ShopscreenState extends State<Shopscreen> {
                     Consumer<Productsprovider>(builder: (_, provider, _) {
                       List<Allproductmodel>allproducts = provider.allproducts;
                       return ProductItemsGridview(
-                      callbackforbox: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Productdetails(),
-                        ),
-                      ),
-                      itemCount: 5,
-                      productname: allproducts[1].name,
-                      productdescription: allproducts[0].stockStatus,
-                      productprice: allproducts[1].price,
-                      productimage: AssetImage(
-                        "lib/assets/productimages/banana.png",
-                      ),
+                      productmodel: allproducts,
                     );
                     },),
                     SizedBox(height: 10),
@@ -152,21 +140,12 @@ class _ShopscreenState extends State<Shopscreen> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    ProductItemsGridview(
-                      callbackforbox: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Productdetails(),
-                        ),
-                      ),
-                      itemCount: 5,
-                      productname: "Organic Bananas",
-                      productdescription: '7pcs, Price',
-                      productprice: "#4.99",
-                      productimage: AssetImage(
-                        "lib/assets/productimages/banana.png",
-                      ),
-                    ),
+                    Consumer<Productsprovider>(builder: (_, provider, _) {
+                      List<Allproductmodel>allproducts = provider.allproducts;
+                      return ProductItemsGridview(
+                       productmodel: allproducts,
+                    );
+                    },),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,21 +170,12 @@ class _ShopscreenState extends State<Shopscreen> {
                     SizedBox(height: 10),
                     Grocerieslist(),
                     SizedBox(height: 10),
-                    ProductItemsGridview(
-                      callbackforbox: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Productdetails(),
-                        ),
-                      ),
-                      itemCount: 5,
-                      productname: "Organic Bananas",
-                      productdescription: '7pcs, Price',
-                      productprice: "#4.99",
-                      productimage: AssetImage(
-                        "lib/assets/productimages/banana.png",
-                      ),
-                    ),
+                    Consumer<Productsprovider>(builder: (_, provider, _) {
+                      List<Allproductmodel>allproducts = provider.allproducts;
+                      return ProductItemsGridview(
+                       productmodel: allproducts,
+                    );
+                    },),
                   ],
                 ),
               ),

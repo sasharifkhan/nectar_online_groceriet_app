@@ -1,8 +1,16 @@
+import 'package:Nectar/services/apiservices/apirequest/getsingleproduct.dart';
 import 'package:Nectar/ui/widgets/rectangleroundedbutton.dart';
 import 'package:flutter/material.dart';
 
-class Productdetails extends StatelessWidget {
-  const Productdetails({super.key});
+class Productdetails extends StatefulWidget {
+  final int id;
+  const Productdetails({super.key, required this.id});
+
+  @override
+  State<Productdetails> createState() => _ProductdetailsState();
+}
+
+class _ProductdetailsState extends State<Productdetails> {
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +21,10 @@ class Productdetails extends StatelessWidget {
         automaticallyImplyLeading: true,
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.share))],
       ),
-      body: Column(
+      body: FutureBuilder(future: Getsingleproduct().getsingleproduct(widget.id), builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) return Center(child: CircularProgressIndicator(color: Colors.black,));
+        if (snapshot.data!['status'] == false) return Center(child: Text("Product Error"),);
+        return Column(
         children: [
           Expanded(
             flex: 3,
@@ -27,7 +38,7 @@ class Productdetails extends StatelessWidget {
                 decoration: BoxDecoration(color: Color(0xFFF2F3F2)),
                 child: Center(
                   child: Image(
-                    image: AssetImage("lib/assets/productimages/apple.png"),
+                    image: NetworkImage(snapshot.data!['image']),
                     height: 200,
                     width: 330,
                   ),
@@ -49,7 +60,7 @@ class Productdetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Naturel Red Apple",
+                          snapshot.data!['name'],
                           style: TextStyle(fontSize: 24),
                         ),
                         IconButton(
@@ -58,7 +69,7 @@ class Productdetails extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text("1kg, Price", style: TextStyle(fontSize: 16)),
+                    Text(snapshot.data!['stockstatus'], style: TextStyle(fontSize: 16)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -73,7 +84,7 @@ class Productdetails extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "#4.99",
+                          snapshot.data!['price'],
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -93,7 +104,7 @@ class Productdetails extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.",
+                      snapshot.data!['description'],
                       style: TextStyle(fontSize: 13),
                     ),
                     Container(height: 1, color: Colors.grey.shade300),
@@ -103,7 +114,7 @@ class Productdetails extends StatelessWidget {
                         Text("Nutritions", style: TextStyle(fontSize: 16)),
                         Row(
                           children: [
-                            Text("100gr"),
+                            Text(snapshot.data!['type']),
                             IconButton(
                               onPressed: () {},
                               icon: Icon(Icons.keyboard_arrow_right),
@@ -143,7 +154,8 @@ class Productdetails extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      );
+      },),
     );
   }
 }
