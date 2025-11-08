@@ -1,7 +1,6 @@
 import 'package:Nectar/logic/providers/locationprovider.dart';
 import 'package:Nectar/services/models/allproductmodel.dart';
 import 'package:Nectar/services/providers/productsprovider.dart';
-import 'package:Nectar/ui/pages/productdetails.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:Nectar/ui/widgets/grocerieslist.dart';
