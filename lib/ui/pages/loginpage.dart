@@ -74,7 +74,7 @@ class _LoginpageState extends State<Loginpage> {
                         Text("Email", style: TextStyle(fontSize: 16)),
                         Plainedtextfield(
                           keyboardType: TextInputType.name,
-                          textboxHintText: "Enter your username.",
+                          textboxHintText: "Enter your email.",
                           controller: InputEmail,
                         ),
                       ],
@@ -148,13 +148,18 @@ class _LoginpageState extends State<Loginpage> {
                               buttonName: "Log IN",
                               callback: () async {
                                 if (InputEmail.text.isNotEmpty &&
-                                    InputPassword.text.isNotEmpty) {
+                                    InputPassword.text.isNotEmpty &&
+                                    InputEmail.text.contains(".com")) {
                                   String messagelogins = "";
                                   provider.logincheck(messagelogins);
                                   setState(() {
                                     isLoading = true;
                                   });
-                                  var messagelogin = await Userlogin().userlogin(InputEmail.text, InputPassword.text);
+                                  var messagelogin = await Userlogin()
+                                      .userlogin(
+                                        InputEmail.text,
+                                        InputPassword.text,
+                                      );
                                   provider.logincheck(messagelogin);
                                   setState(() {
                                     isLoading = false;
@@ -167,6 +172,71 @@ class _LoginpageState extends State<Loginpage> {
                                       ),
                                     );
                                   }
+                                } else if (InputEmail.text.isEmpty &&
+                                    InputPassword.text.isNotEmpty) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      icon: Icon(Icons.warning),
+                                      iconColor: Colors.red,
+                                      actions: [
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: Icon(Icons.close),
+                                        ),
+                                      ],
+                                      title: Text(
+                                        "Please fill the email box then try again.",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                    ),
+                                  );
+                                } else if (InputEmail.text.isNotEmpty &&
+                                    InputPassword.text.isEmpty) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      icon: Icon(Icons.warning),
+                                      iconColor: Colors.red,
+                                      actions: [
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: Icon(Icons.close),
+                                        ),
+                                      ],
+                                      title: Text(
+                                        "Please fill the password box then try again.",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      icon: Icon(Icons.warning),
+                                      iconColor: Colors.red,
+                                      actions: [
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: Icon(Icons.close),
+                                        ),
+                                      ],
+                                      title: Text(
+                                        "Please fill email and password then try again.",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                    ),
+                                  );
                                 }
                               },
                               buttonbgcolor: Color(0xFF53B175),
