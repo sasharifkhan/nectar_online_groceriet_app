@@ -22,6 +22,7 @@ class _ShopscreenState extends State<Shopscreen> {
     super.initState();
     Provider.of<Productsprovider>(listen: false, context).getallproduct();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,12 +112,13 @@ class _ShopscreenState extends State<Shopscreen> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    Consumer<Productsprovider>(builder: (_, provider, _) {
-                      List<Allproductmodel>allproducts = provider.allproducts;
-                      return ProductItemsGridview(
-                      productmodel: allproducts,
-                    );
-                    },),
+                    Consumer<Productsprovider>(
+                      builder: (_, provider, _) {
+                        List<Allproductmodel> allproducts =
+                            provider.allproducts;
+                        return ProductItemsGridview(productmodel: allproducts);
+                      },
+                    ),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,12 +141,13 @@ class _ShopscreenState extends State<Shopscreen> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    Consumer<Productsprovider>(builder: (_, provider, _) {
-                      List<Allproductmodel>allproducts = provider.allproducts;
-                      return ProductItemsGridview(
-                       productmodel: allproducts,
-                    );
-                    },),
+                    Consumer<Productsprovider>(
+                      builder: (_, provider, _) {
+                        List<Allproductmodel> allproducts =
+                            provider.allproducts;
+                        return ProductItemsGridview(productmodel: allproducts);
+                      },
+                    ),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,12 +172,13 @@ class _ShopscreenState extends State<Shopscreen> {
                     SizedBox(height: 10),
                     Grocerieslist(),
                     SizedBox(height: 10),
-                    Consumer<Productsprovider>(builder: (_, provider, _) {
-                      List<Allproductmodel>allproducts = provider.allproducts;
-                      return ProductItemsGridview(
-                       productmodel: allproducts,
-                    );
-                    },),
+                    Consumer<Productsprovider>(
+                      builder: (_, provider, _) {
+                        List<Allproductmodel> allproducts =
+                            provider.allproducts;
+                        return ProductItemsGridview(productmodel: allproducts);
+                      },
+                    ),
                   ],
                 ),
               ),

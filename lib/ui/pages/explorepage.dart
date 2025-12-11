@@ -59,7 +59,8 @@ class _ExplorepageState extends State<Explorepage> {
                       return Center(child: Text("Categories is Empty"));
                     }
                     return GridView.builder(
-                      itemCount: productcategories.length,
+                      itemCount:
+                          8, // Item count//////////////////////////////////////////
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 15,
@@ -85,6 +86,7 @@ class _ExplorepageState extends State<Explorepage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              // Item Images////////////////////////////////////////////////
                               productcategories[index].image == null
                                   ? CircularProgressIndicator()
                                   : Image(
@@ -95,7 +97,10 @@ class _ExplorepageState extends State<Explorepage> {
                                       width: 111,
                                     ),
                               Text(
-                                productcategories[index].name,
+                                // Item name////////////////////////////////////////////////////
+                                productcategories[index].name == "Beverages"
+                                    ? "Bags"
+                                    : productcategories[index].name,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
